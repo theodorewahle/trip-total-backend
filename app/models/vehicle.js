@@ -7,6 +7,7 @@ const VehicleSchema = new mongoose.Schema({
   year: { type: Number },
   isBeingRented: { type: Boolean, default: false },
   currentTripId: { type: String, default: "" },
+  coords: { type: Array, default: []}
 });
- 
+
 module.exports = mongoose.model('Vehicle', VehicleSchema);

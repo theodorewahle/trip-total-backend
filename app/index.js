@@ -20,7 +20,7 @@ const client = new smartcar.AuthClient({
   testMode: true,
 });
 
-module.exports = client 
+module.exports = client
 
 
 
@@ -59,7 +59,6 @@ app.use('/trip', tripRouter)
 
 
 app.get('/login', function(req, res) {
-  console.log()
   const authUrl = client.getAuthUrl();
 
   res.render('home', {
@@ -77,7 +76,7 @@ const exchangeCodeForAccessToken = async code => {
         tokenDocument.vehicleId = vehicleId
         await tokenDocument.save()
       })
-      
+
       return access.accessToken
     });
 }
@@ -100,7 +99,7 @@ app.get('/vehicleList', async function(req, res) {
   return smartcar.getVehicleIds(access.accessToken)
     .then(async data => {
 
-      const vehicleIds = data.vehicles; 
+      const vehicleIds = data.vehicles;
       const vehicleList = await Promise.map(vehicleIds, async id => {
         const car = new smartcar.Vehicle(id, access.accessToken)
         const vehicleInfo = await car.info()
